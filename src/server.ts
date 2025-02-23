@@ -1,8 +1,19 @@
 import express, { Request, Response } from "express";
 import app from "./app";
+import mongoose from "mongoose";
+require("dotenv").config();
 
-const port = 3000;
+const port = 5000;
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+async function main() {
+  await mongoose.connect(`${process.env.DB_URL}`);
+
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+  });
+}
+try {
+  main();
+} catch (err) {
+  console.log(err);
+}

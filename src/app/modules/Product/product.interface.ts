@@ -1,4 +1,4 @@
-interface TProduct {
+export interface TProduct {
   name: string;
   description: string;
   price: number;
@@ -8,12 +8,12 @@ interface TProduct {
   inventory: TInventory;
 }
 
-interface TVariant {
+export interface TVariant {
   type: string;
   value: string;
 }
 
-interface TInventory {
+export interface TInventory {
   quantity: number;
   inStock: boolean;
 }
