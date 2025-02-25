@@ -18,4 +18,12 @@ const getProduct = async (req: Request, res: Response) => {
     data: products,
   });
 };
-export const productController = { createProduct, getProduct };
+const deleteProduct = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  await ProductServices.deleteProductFromDB(id);
+  res.status(200).json({
+    success: true,
+    message: "delted product",
+  });
+};
+export const productController = { createProduct, getProduct, deleteProduct };

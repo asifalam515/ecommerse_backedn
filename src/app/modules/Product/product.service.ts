@@ -10,7 +10,12 @@ const getProductFromDB = async () => {
   return result;
 };
 
+const deleteProductFromDB = async (id: string) => {
+  const result = await ProductModel.findByIdAndDelete(id);
+  return result;
+};
 export const ProductServices = {
   createProductToDB,
   getProductFromDB,
+  deleteProductFromDB,
 };
