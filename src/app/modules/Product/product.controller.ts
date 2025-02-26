@@ -18,12 +18,26 @@ const getProduct = async (req: Request, res: Response) => {
     data: products,
   });
 };
+const getSingleProduct = async (req: Request, res: Response) => {
+  const { productId } = req.params;
+  const product = await ProductServices.getSingleProductFromDB(productId);
+  res.status(200).json({
+    success: true,
+    message: "single product retrieve",
+    data: product,
+  });
+};
 const deleteProduct = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  await ProductServices.deleteProductFromDB(id);
+  const { _id } = req.params;
+  await ProductServices.deleteProductFromDB(_id);
   res.status(200).json({
     success: true,
     message: "delted product",
   });
 };
-export const productController = { createProduct, getProduct, deleteProduct };
+export const productController = {
+  createProduct,
+  getProduct,
+  getSingleProduct,
+  deleteProduct,
+};

@@ -3,7 +3,7 @@ import { router } from "./app/modules/Product/product.route";
 const app = express();
 
 app.use(express.json());
-app.use("", router);
+app.use("/api", router);
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
