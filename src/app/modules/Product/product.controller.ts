@@ -27,12 +27,27 @@ const getSingleProduct = async (req: Request, res: Response) => {
     data: product,
   });
 };
+
+const updateProductData = async (req: Request, res: Response) => {
+  const { productId } = req.params;
+  const data = req.body;
+
+  const updatedProductData = await ProductServices.updateProductFromDB(
+    productId,
+    data
+  );
+  res.status(200).json({
+    success: true,
+    message: "Product Updated successfully",
+    data: updatedProductData,
+  });
+};
 const deleteProduct = async (req: Request, res: Response) => {
   const { _id } = req.params;
   await ProductServices.deleteProductFromDB(_id);
   res.status(200).json({
     success: true,
-    message: "delted product",
+    message: "deleted product",
   });
 };
 export const productController = {
@@ -40,4 +55,5 @@ export const productController = {
   getProduct,
   getSingleProduct,
   deleteProduct,
+  updateProductData,
 };
